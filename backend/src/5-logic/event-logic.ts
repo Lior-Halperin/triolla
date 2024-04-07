@@ -2,13 +2,9 @@ import { ResourceNotFoundError, UnauthorizedError, ValidationError } from "../4-
 import { IEvent, EventModel } from "../4-models/event-model";
 
 // Get all event reserves:
-async function getAllEvent(): Promise<IEvent[]> {
-  try {
+async function getAllEvent(): Promise<IEvent[]> { // Todo: Pagination 
     return await EventModel.find().exec();
-  } catch (error) {
-    // Todo: error
-    throw error;
-  }
+
 }
 
 // Get one event reserve by _id:
