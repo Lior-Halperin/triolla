@@ -1,15 +1,28 @@
 import express, { NextFunction, Request, Response } from "express";
-import { EventModel } from "../4-models/event-model";
+import { EventModel, IEvent } from "../4-models/event-model";
 import logic from "../5-logic/event-logic";
+import { PaginationResponseModel } from "../4-models/pagination-response-model";
+import PaginationRequestModel from "../4-models/pagination-request-model";
 
 const router = express.Router();
 
 // GET http://localhost:3001/api/event
 router.get("/event", async (request: Request, response: Response, next: NextFunction) => {
     try {
-        const event  = await logic.getAllEvent ();
+        const page = +request.query.page 
+        const per_page = +request.query.per_page
+        // Todo: There is a malfunction, unable to retrieve by page, it needs to be fixed.
+        const paginationRequest = new PaginationRequestModel({page, per_page})
+        if(page || per_page){
+            const res = await logic.getEventUsePagination(paginationRequest) 
+            response.json(res);
+        
+        }
+        else{
+            const event: IEvent[]  = await logic.getAllEvent ();
+            response.json(event);
+        }
 
-        response.json(event );
     }
     catch (err: any) {
         next(err);

@@ -11,7 +11,6 @@ import eventsService from "../../Services/EventsService";
 
 function AddEventView(): JSX.Element {
 
-  // const { register, handleSubmit, StyledFormState } = useStyledFormAction<IEventModel>();
   const {
     register,
     handleSubmit,

@@ -16,7 +16,8 @@ const environments:any = {
         eventsURL: `${urlDomain.protocol}`+`${urlDomain.domain}`+'api/event',
     },
     production: {
-
+        baseURL: `${urlDomain.protocol}`+`${urlDomain.domain}`+'api/',
+        eventsURL: `${urlDomain.protocol}`+`${urlDomain.domain}`+'api/event',
     }
   }
   
